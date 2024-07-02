@@ -1,0 +1,49 @@
+{% extends 'mce/base.html' %}
+{% load static %}
+{% block title%}ACCESORIOS{% endblock %}
+{% block body_id %}products-body{% endblock %}
+{% block content %}
+<!--CARDS ACCESORIOS-->
+<div class="container" id="productos">
+  <div class="row g-3">
+    {% for accesorio in accesorios %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+        <img src="{{ accesorio.imagen.url }}" alt="{{ accesorio.title }}" class="card-image" />
+        <div class="card-body">
+          <h4 class="card-title">{{ accesorio.name }}</h4>
+          <h5 class="card-subtitle">${{ accesorio.price }}</h5>
+          <br />
+          <p class="card-text">{{ accesorio.subtitle }}</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ accesorio.id }}">VER MÁS</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+    
+<!--END CARDS ACCESORIOS-->
+<!--MODAL INICIO ACCESORIOS-->
+{% for accesorio in accesorios %}
+<div class="modal fade" id="modal{{ accesorio.id }}" tabindex="-1" role="dialog" aria-labelledby="modal{{ accesorio.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-ms modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <img src="{{ accesorio.imagen.url }}" alt="molinoManual" class="modal-img" />
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal{{ accesorio.id }}">{{ accesorio.name }}</h5>
+      </div>
+      <div class="modal-body">
+        <p>{{ accesorio.description }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!--END MODAL ACCESORIOS-->
+{% endblock %}

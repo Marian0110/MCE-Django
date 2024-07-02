@@ -1,0 +1,34 @@
+
+#findCoffee {
+    margin-top: 600px;
+    margin-bottom: 100px;
+    z-index: 3;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.90rem;
+    position: sticky;
+    color: rgb(255, 255, 255);
+}
+
+.hero-section .container {
+    z-index: 1;
+    position: relative;
+}
+
+#carouselNp {
+    margin-top: 5%;
+    position: sticky;
+}
+
+#carouselExampleCaptions {
+    position: absolute;
+    width: 100%;
+    top: 100px; 
+    z-index: 2; 
+}
+
+.carousel-item img {
+    width: auto; 
+    height: 500px;
+    object-fit: scale-down; 
+  }

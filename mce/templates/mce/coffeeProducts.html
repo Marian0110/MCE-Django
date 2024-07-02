@@ -1,0 +1,49 @@
+{% extends 'mce/base.html' %}
+{% load static %}
+{% block title %}PRODUCTOS{% endblock %}
+{% block body_id %}products-body{% endblock %}
+{% block content %}
+<!--CARDS PRODUCTOS-->
+<div class="container" id="productos">
+  <div class="row g-3">
+    {% for producto in productos %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.title }}" class="card-image" />
+        <div class="card-body">
+          <h4 class="card-title">{{ producto.title }}</h4>
+          <h5 class="card-subtitle">${{ producto.price }}</h5>
+          <br />
+          <p class="card-text">{{ producto.subtitle }}</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ producto.id }}">VER MÁS</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!--END CARDS PRODUCTOS-->
+
+<!--INICIO MODAL PRODUCTOS-->
+{% for producto in productos %}
+<div class="modal fade" id="modal{{ producto.id }}" tabindex="-1" role="dialog" aria-labelledby="modal{{ producto.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-ms modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <img src="{{ producto.imagen.url }}" alt="{{ producto.title }}" class="modal-img" />
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal{{ producto.id }}">{{ producto.title }}</h5>
+      </div>
+      <div class="modal-body">
+        <p>{{ producto.description }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!--END MODAL PRODUCTOS-->
+{% endblock %}

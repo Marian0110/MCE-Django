@@ -1,0 +1,85 @@
+.login-button{
+    text-decoration: none;
+    background-color: #561919;
+    color: #fff;
+    font-size: 15px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: 0.5s background-color;
+}
+
+.login-button:hover {
+    background-color: #e6d5c4;
+    color: #561919;
+}
+
+.navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+    box-shadow: none;
+}
+
+.navbar-toggler:focus, .btn-close:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.nav-link {
+    color: darkgray;
+    font-weight: 600;
+    position: relative;
+}
+
+.border {
+    border: 50%;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+@media (min-width: 992px){
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0%; 
+        height: 2px;
+        background-color: rgb(90, 27, 27);
+        visibility: hidden;
+        transition: 0.4s ease-in-out;
+    }
+
+    .nav-link:hover::before, .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+.navbar {
+    background-color: #fff;
+    height: 70px;
+    border-radius:10px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    font-family: 'Times New Roman', Times, serif;
+    font-style:inherit;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    margin-right: auto; 
+}
+
+.navbar-logo {
+    max-width: 50px; 
+    border-radius: 5px;
+}
+
+#offcanvasNavbarLabel {
+    font-weight: bold;
+}

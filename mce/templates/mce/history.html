@@ -1,0 +1,77 @@
+{% extends 'mce/base.html' %}
+{% load static %}
+{% block title %}HISTORIA{% endblock %}
+{% block content %}
+<!--SECCION HISTORIA-->
+<div id="Hp1" onclick="datoCafe()">
+  <div id="Hptext0">
+    <h1>{{ id_map.Hp1.titulo }}</h1>
+    <p>{{ id_map.Hp1.content|linebreaksbr }}</p>
+    <h5 id="clickeame">Clickea aqui y en las imagenes para saber un dato curioso!</h5>
+  </div>
+</div>
+<div id="Np4">
+  <div id="Npimg4">
+    <img src="{{ id_map.Np4_1.imagen.url }}" onclick="datoEti()"/>
+  </div>
+  <div id="Nptext4">
+    <h3><br />{{ id_map.Np4_1.titulo }}<br /></h3>
+    <p>{{ id_map.Np4_1.content|linebreaksbr }}</p>
+  </div>
+</div>
+<div id="Np3">
+  <div id="Npimg3">
+    <img src="{{ id_map.Np3_1.imagen.url }}" onclick="datoCol()"/>
+  </div>
+  <div id="Nptext3" style="color: #e4e6e5">
+    <h3>{{ id_map.Np3_1.titulo }}<br /></h3>
+    <p>{{ id_map.Np3_1.content|linebreaksbr }}</p>
+  </div>
+</div>
+<div id="Np4">
+  <div id="Npimg4">
+    <img src="{{ id_map.Np4_2.imagen.url }}" onclick="datoBra()"/>
+  </div>
+  <div id="Nptext4">
+    <h3>{{ id_map.Np4_2.titulo }}<br /></h3>
+    <p>{{ id_map.Np4_2.content|linebreaksbr }}</p>
+  </div>
+</div>
+<div id="Np3">
+  <div id="Npimg3">
+    <img src="{{ id_map.Np3_2.imagen.url }}" onclick="datoCos()"/>
+  </div>
+  <div id="Nptext3" style="color: #e4e6e5">
+    <h3>{{ id_map.Np3_2.titulo }}<br /></h3>
+    <p>{{ id_map.Np3_2.content|linebreaksbr }}</p>
+  </div>
+</div>
+<div id="Np4">
+  <div id="Npimg4">
+    <img src="{{ id_map.Np4_3.imagen.url }}" onclick="datoJam()"/>
+  </div>
+  <div id="Nptext4">
+    <h3>{{ id_map.Np4_3.titulo }}<br /></h3>
+    <p>{{ id_map.Np4_3.content|linebreaksbr }}</p>
+  </div>
+</div>
+<div id="Np3">
+  <div id="Npimg3">
+    <img src="{{ id_map.Np3_3.imagen.url }}" onclick="datoKen()"/>
+  </div>
+  <div id="Nptext3" style="color: #e4e6e5">
+    <h3>{{ id_map.Np3_3.titulo }}<br /></h3>
+    <p>{{ id_map.Np3_3.content|linebreaksbr }}</p>
+  </div>
+</div>
+<div id="Np4">
+  <div id="Npimg4">
+    <img src="{{ id_map.Np4_4.imagen.url }}" onclick="datoGua()"/>
+  </div>
+  <div id="Nptext4">
+    <h3>{{ id_map.Np4_4.titulo }}<br /></h3>
+    <p>{{ id_map.Np4_4.content|linebreaksbr }}</p>
+  </div>
+</div>
+<!--FIN SECCION HISTORIA-->
+{% endblock %}

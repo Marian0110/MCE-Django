@@ -1,0 +1,60 @@
+{% extends 'mce/base.html' %}
+{% load static %}
+{% block title %}INICIAR SESIÓN{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100 mt-5 mb-4">
+  <!--login container-->
+  <div id="area-centerr" class="row border rounder-5 p-3 bg-white shadow box-area">
+    <!--left box-->
+    <div id="area-img" class="col-md-5 rounder-2 d-flex justify-content-center align-items-center flex-column left-box">
+      <div> <!--division de la imagen -->
+        <img src="{% static 'mce/images/logomce.png' %}" alt="coffee login" class="img-fluid" id="loginimg">
+        <p id="verify" class="text-brown fs-3">Verificate</p>
+        <small id="submerged" class="text-brown text-wrap">"Sumergete en el mundo del café."</small>
+      </div>
+    </div>
+    <!--right box-->
+    <div class="col-md-6 right-box">
+      <div class="row align-items-center">
+        <div class="header-text">
+          <h3>HOLA!</p>
+            <p>Bienvenido a la página de nuevo.</p>
+        </div>
+        <!--INICIO FORM-->
+        <form id="form-login" action="#" name="loguear"> <!--method="post" enctype="multipart/form-data" -->
+          <div class="input-group mb-3">
+            <input id="username" type="text" class="form-control form-control-lg bd-light fs-6"
+              placeholder="Ingresa tu nombre de usuario">
+          </div>
+          <div id="messageLogin" class="error"></div>
+          <div class="input-group mb-1">
+            <input id="password" type="password" class="form-control form-control-lg bd-light fs-6"
+              placeholder="Ingresa tu contraseña">
+          </div>
+          <div id="messagePass" class="error"></div>
+          <div class="input-group mb-4 d-flex justify-content-between ">
+            <div class="form-check">
+              <input type="checkbox" id="formCheck" class="form-check-input">
+              <label for="formCheck" class="for-check-label text-secondary"><small>Recordar contraseña</small></label>
+            </div>
+            <div class="forgot">
+              <a href="#">No recuerdas tu contraseña?</a>
+            </div>
+          </div>
+          <div class="input-group mb-1">
+            <button id="btnLogin" type="submit" class="btn btn-lg btn-primary w-100 fs-6">Iniciar Sesión</button>
+          </div>
+          <div class="row-6 mt-2" class="register-text">
+            <small>¿No tienes Coffy Cuenta? </small> <a href="register">Registrate para un cafésito</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END FORM-->
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

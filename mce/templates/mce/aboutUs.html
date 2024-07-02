@@ -1,0 +1,23 @@
+{% extends 'mce/base.html' %}
+{% load static %}
+{% block title %}NOSOTROS{% endblock %}
+{% block content %}
+<!--SECCION NOSOTROS-->
+<section class="container">
+  {% for n in nosotros %}
+    <div class="container" id="Np{{ forloop.counter }}"> <!--forloop es una variable adicional que se puede usar en el loop for para iterar sobre ids-->
+      <div id="Npimg{{ forloop.counter }}">
+        {% if n.imagen %}
+          <img src="{{ n.imagen.url }}" alt="{{ n.titulo }}" />
+        {% endif %}
+      </div>
+      <div id="Nptext{{ forloop.counter }}">
+        <h1>{{ n.titulo }}</h1>
+        <h4>{{ n.subtitulo }}<br /></h4>
+        <p>{{ n.descripcion|linebreaksbr }}</p> <!--linebreaksbr (convertir saltos de línea en <br>)-->
+      </div>
+    </div>
+  {% endfor %}
+</section>
+<!--FIN SECCION NOSOTROS-->
+{% endblock %}

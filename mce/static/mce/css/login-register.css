@@ -1,0 +1,74 @@
+#loginimg {
+    margin-top: 50px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+#body-login, #body-register {
+    background-color: #561919;
+}
+
+.box-area {
+    width: 800px;
+    margin-top: 130px;
+    border-radius: 30px;
+}
+
+#area-login {
+    border-radius: 20px;
+}
+
+.right-box {
+    padding: 40px 30px 40px 40px ;
+}
+
+::placeholder {
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 768px){
+    .box-area{
+        margin-top: 0 40px;
+    }
+    .left-box {
+        height: 0;
+        overflow: hidden;
+    }
+    .right-box{
+        padding: 20px;
+    }
+}
+
+#submerged {
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 20px;
+}
+#area-img {
+    background-color: rgba(230,213,196,255);
+    border-radius: 20px;
+}
+
+#verify {
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+    font-weight: 700; 
+    text-align: center
+}
+
+.header-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#area-center {
+    margin-top: 90px;
+}
+#area-centerr {
+    margin-top: 60px;
+}
+
+#codPais {
+    color: rgb(126, 126, 126);
+    border-radius: 5px;
+}
