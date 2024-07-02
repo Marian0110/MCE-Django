@@ -1,0 +1,80 @@
+{% extends 'administrativo/baseCrud.html' %}
+{% block title %} Mantenedor accesorios {% endblock %}
+{% block body%}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h3 class="text-center">Gestión de accesorios</h3>
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'agregarAccesorio' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="cod" name="cod" class="form-control" placeholder="Código" maxlength="5" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Título"
+                            maxlength="40" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="sub" name="sub" class="form-control" placeholder="Subtítulo"
+                            maxlength="200" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="number" id="price" name="price" class="form-control" placeholder="Precio" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <textarea id="desc" name="desc" class="form-control" rows="4" placeholder="Ingresa la descripción" required></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="img">Imagen: </label>
+                        <input type="file" id="img" name="img" class="form-control-file">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success text-white btn-md w-100" onclick="showAlert()">GUARDAR</button>
+                    </div>
+                </form>
+                <div role="alert" id="mensaje" class="alert alert-success mt-3" style="display: none;">
+                    {% if mensaje %}
+                    {{ mensaje }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                {% if accesoriosTotales %}
+                <thead class="table-dark">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Titulo</th>
+                        <th>Subtitulo</th>
+                        <th>Precio</th>
+                        <th>Descripcion</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in accesoriosTotales %}
+                    <tr>
+                        <td>{{ a.cod }}</td>
+                        <td>{{ a.name }}</td>
+                        <td>{{ a.subtitle }}</td>
+                        <td>{{ a.price }}</td>
+                        <td>{{ a.description }}</td>
+                        <td>
+                            <div style="display: flex; gap:10px;">
+                                <a href="{% url 'edicionAccesorio' a.cod %}" class="btn btn-info">Editar</a>
+                                <a href="{% url 'eliminarAccesorio' a.cod %}" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

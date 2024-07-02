@@ -1,0 +1,200 @@
+{% extends 'administrativo/baseCrud.html' %} {% block title %} Mantenedor - MCE
+{% endblock %} {% block body%}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <div class="table-responsive py-2">
+        <h4 class="text-center">Productos</h4>
+        <table class="table table-striped">
+          {% if productosTotales %}
+          <thead class="table-success">
+            <tr>
+              <th>Codigo</th>
+              <th>Titulo</th>
+              <th>Subtitulo</th>
+              <th>Precio</th>
+              <th>Contenido neto</th>
+              <th>Descripcion</th>
+              <th>Imagén</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in productosTotales %}
+            <tr>
+              <td>{{ p.cod }}</td>
+              <td>{{ p.title }}</td>
+              <td>{{ p.subtitle }}</td>
+              <td>{{ p.price }}</td>
+              <td>{{ p.netContent }}</td>
+              <td>{{ p.description }}</td>
+              <td>
+                {% if p.imagen %}
+                <img src="{{ p.imagen.url }}" alt="{{ p.title }}" width="150">
+                {% else %}
+                Sin imagen cargada
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <div class="table-responsive py-2">
+        <h4 class="text-center">Accesorios</h4>
+        <table class="table table-striped">
+          {% if accesoriosTotales %}
+          <thead class="table-success">
+            <tr>
+              <th>Codigo</th>
+              <th>Titulo</th>
+              <th>Subtitulo</th>
+              <th>Precio</th>
+              <th>Descripcion</th>
+              <th>Imagén</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a in accesoriosTotales %}
+            <tr>
+              <td>{{ a.cod }}</td>
+              <td>{{ a.name }}</td>
+              <td>{{ a.subtitle }}</td>
+              <td>{{ a.price }}</td>
+              <td>{{ a.description }}</td>
+              <td>
+                {% if a.imagen %}
+                <img src="{{ a.imagen.url }}" alt="{{ a.title }}" width="150">
+                {% else %}
+                Sin imagen cargada
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <div class="table-responsive py-2">
+        <h4 class="text-center">Historias del café</h4>
+        <table class="table table-striped">
+          {% if historias %}
+          <thead class="table-success">
+            <tr>
+              <th>Identificador</th>
+              <th>Titulo</th>
+              <th>Contenido</th>
+              <th>Imagén</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for h in historias %}
+            <tr>
+              <td>{{ h.id_historia }}</td>
+              <td>{{ h.titulo }}</td>
+              <td>{{ h.content }}</td>
+              <td>
+                {% if h.imagen %}
+                <img src="{{ h.imagen.url }}" alt="{{ h.title }}" width="150">
+                {% else %}
+                Sin imagen cargada
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <div class="table-responsive py-2">
+        <h4 class="text-center">Clientes</h4>
+        <table class="table table-striped">
+          {% if clientesTotales %}
+          <thead class="table-success">
+            <tr>
+              <th>Id</th>
+              <th>Nombre usuario</th>
+              <th>E-mail</th>
+              <th>Contraseña</th>
+              <th>Numero celular</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in clientesTotales %}
+            <tr>
+              <td>{{ c.id }}</td>
+              <td>{{ c.username }}</td>
+              <td>{{ c.email }}</td>
+              <td>{{ c.password }}</td>
+              <td>{{ c.phoneNumber }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <div class="table-responsive py-2">
+        <h4 class="text-center">Seccion de nosotros</h4>
+        <table class="table table-striped">
+          {% if nosotros %}
+          <thead class="table-success">
+            <tr>
+              <th>Id</th>
+              <th>Titulo</th>
+              <th>Subtitulo</th>
+              <th>Descripción</th>
+              <th>Imagén</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for n in nosotros %}
+            <tr>
+              <td>{{ n.id }}</td>
+              <td>{{ n.titulo }}</td>
+              <td>{{ n.subtitulo }}</td>
+              <td>{{ n.descripcion }}</td>
+              <td>
+                {% if n.imagen %}
+                <img src="{{ n.imagen.url }}" alt="{{ n.title }}" width="150">
+                {% else %}
+                Sin imagen cargada
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

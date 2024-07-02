@@ -1,0 +1,74 @@
+{% extends 'administrativo/baseCrud.html' %}
+{% block title %} Mantenedor de clientes {% endblock %}
+
+{% block body%}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h3 class="text-center">Gestión de clientes</h3>
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'agregarCliente' %}" method="POST"> {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="identifier" name="identifier" class="form-control"
+                            placeholder="numero cliente" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="user" name="user" class="form-control" placeholder="nombre usuario"
+                            minlength="5" maxlength="20" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="mail" id="email" name="email" class="form-control" placeholder="correo"
+                            maxlength="100" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" id="pass" name="pass" class="form-control" placeholder="contraseña"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <input type="text" id="cel" name="cel" class="form-control"
+                            placeholder="numero telefonico (opc)" maxlength="9">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success text-white btn-md w-100">GUARDAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                {% if clientesTotales %}
+                <thead class="table-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre usuario</th>
+                        <th>E-mail</th>
+                        <th>Contraseña</th>
+                        <th>Numero celular</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in clientesTotales %}
+                    <tr>
+                        <td>{{ c.id }}</td>
+                        <td>{{ c.username }}</td>
+                        <td>{{ c.email }}</td>
+                        <td>{{ c.password }}</td>
+                        <td>{{ c.phoneNumber }}</td>
+                        <td>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="{% url 'edicionCliente' c.id %}" class="btn btn-info">Editar</a>
+                                <a href="{% url 'eliminarCliente' c.id %}" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

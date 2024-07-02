@@ -1,0 +1,66 @@
+{% extends 'administrativo/baseCrud.html' %}
+{% block title %} Modificación accesorios {% endblock %}
+
+{% block body%}
+<div class="container mt-1">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3 class="p-2 text-center">Edición de accesorios</h3>
+            <div class="card" style="border: 1px solid #561919">
+                <div class="card-body">
+                    <form action="{% url 'editarAccesorio' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cod">Código:</label>
+                                    <input type="text" id="cod" name="cod" value="{{accesorio.cod}}" class="form-control" placeholder="Código" maxlength="5" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="price">Precio:</label>
+                                    <input type="number" id="price" name="price" value="{{accesorio.price}}" class="form-control" placeholder="Precio">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Título:</label>
+                            <input type="text" id="name" name="name" value="{{accesorio.name}}" class="form-control" placeholder="Título" maxlength="40">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="sub">Subtítulo:</label>
+                            <input type="text" id="sub" name="sub" value="{{accesorio.subtitle}}" class="form-control" placeholder="Subtítulo" maxlength="200">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="desc">Descripción:</label>
+                            <textarea id="desc" name="desc" class="form-control" rows="4" placeholder="Ingresa la descripción">{{accesorio.description}}</textarea>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="img">Imagen nueva:</label>
+                            <input type="file" id="img" name="img" class="form-control-file">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Imagen actual:</label><br>
+                            {% if accesorio.imagen %}
+                                <img src="{{ accesorio.imagen.url }}" alt="#" class="img-fluid" width="100">
+                            {% else %}
+                                Sin imagen cargada
+                            {% endif %}
+                        </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success text-white btn-md mx-2" onclick="showAlert()">ACTUALIZAR</button>
+                            <a href="{% url 'crudAccesorios' %}" class="btn btn-secondary text-white btn-md mx-2">VOLVER</a>
+                        </div>
+                    </form>
+                    <div role="alert" id="mensaje" class="alert alert-success mt-3" style="display: none;">
+                        {% if mensaje %}
+                        {{ mensaje }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

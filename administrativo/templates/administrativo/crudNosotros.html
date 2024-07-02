@@ -1,0 +1,76 @@
+{% extends 'administrativo/baseCrud.html' %}
+{% block title %} Mantenedor nosotros {% endblock %}
+
+{% block body%}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h3 class="text-center">Sobre nosotros</h3>
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'agregarSobreN' %}" method="POST"> {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="identifier" name="identifier" class="form-control"
+                            placeholder="Identificador" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Titulo"
+                            minlength="5" maxlength="100" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="sub" name="sub" class="form-control" placeholder="Subtitulo"
+                            maxlength="100" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <textarea id="desc" name="desc" class="form-control" rows="4" placeholder="Ingresa la descripción"></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="img">Imagen: </label>
+                        <input type="file" id="img" name="img" class="form-control-file">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success text-white btn-md w-100" onclick="showAlert()">GUARDAR</button>
+                    </div>
+                </form>
+                <div role="alert" id="mensaje" class="alert alert-success mt-3" style="display: none;">
+                    {% if mensaje %}
+                    {{ mensaje }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                {% if nosotros %}
+                <thead class="table-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Titulo</th>
+                        <th>Subtitulo</th>
+                        <th>Descripción</th>
+                        <th>Opciones</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for n in nosotros %}
+                    <tr>
+                        <td>{{ n.id }}</td>
+                        <td>{{ n.titulo }}</td>
+                        <td>{{ n.subtitulo }}</td>
+                        <td>{{ n.descripcion }}</td>
+                        <td>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="{% url 'edicionN' n.id %}" class="btn btn-info">Editar</a>
+                                <a href="{% url 'eliminarN' n.id %}" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

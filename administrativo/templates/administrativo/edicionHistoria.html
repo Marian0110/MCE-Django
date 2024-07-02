@@ -1,0 +1,57 @@
+{% extends 'administrativo/baseCrud.html' %}
+{% block title %} Modificación historias {% endblock %}
+
+{% block body%}
+<div class="container mt-1">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Edicion de historias</h2>
+            <div class="card" style="border: 1px solid #561919">
+                <div class="card-body">
+                    <form action="{% url 'editarHistoria' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="identifier">Identificador:</label>
+                            <input type="text" id="identifier" name="identifier" value="{{historia.id_historia}}"
+                                class="form-control" placeholder="Identificador" maxlength="5" readonly>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="title">Titulo:</label>
+                            <input type="text" id="title" name="title" value="{{historia.titulo}}" class="form-control"
+                                placeholder="Título" maxlength="200">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="content">Contenido:</label>
+                            <textarea id="content" name="content" class="form-control"
+                                rows="4" placeholder="Ingresa la historia">{{historia.content}}</textarea>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="img">Imagen nueva: </label>
+                            <input type="file" id="img" name="img" value="{{historia.imagen}}"
+                                class="form-control-file">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Imagen actual:</label><br>
+                            {% if historia.imagen %}
+                                <img src="{{ historia.imagen.url }}" alt="#" class="img-fluid" width="100">
+                            {% else %}
+                                Sin imagen cargada
+                            {% endif %}
+                        </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success text-white btn-md mx-2" onclick="showAlert()">ACTUALIZAR</button>
+                            <a href="{% url 'crudHistorias' %}"
+                                class="btn btn-secondary text-white btn-md mx-2">VOLVER</a>
+                        </div>
+                    </form>
+                    <div role="alert" id="mensaje" class="alert alert-success mt-3" style="display: none;">
+                        {% if mensaje %}
+                        {{ mensaje }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
