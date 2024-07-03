@@ -2,9 +2,9 @@
 {% load static %}
 {% block title %}INICIAR SESIÓN{% endblock %}
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100 mt-5 mb-4">
+<div class="container d-flex justify-content-center align-items-center min-vh-100 mb-5">
   <!--login container-->
-  <div id="area-centerr" class="row border rounder-5 p-3 bg-white shadow box-area">
+  <div class="row border rounder-5 p-3 bg-white shadow box-area">
     <!--left box-->
     <div id="area-img" class="col-md-5 rounder-2 d-flex justify-content-center align-items-center flex-column left-box">
       <div> <!--division de la imagen -->
@@ -23,12 +23,12 @@
         <!--INICIO FORM-->
         <form id="form-login" action="#" name="loguear"> <!--method="post" enctype="multipart/form-data" -->
           <div class="input-group mb-3">
-            <input id="username" type="text" class="form-control form-control-lg bd-light fs-6"
+            <input id="username" name="username" type="text" class="form-control form-control-lg bd-light fs-6"
               placeholder="Ingresa tu nombre de usuario">
           </div>
           <div id="messageLogin" class="error"></div>
           <div class="input-group mb-1">
-            <input id="password" type="password" class="form-control form-control-lg bd-light fs-6"
+            <input id="password" name="password" type="password" class="form-control form-control-lg bd-light fs-6"
               placeholder="Ingresa tu contraseña">
           </div>
           <div id="messagePass" class="error"></div>
@@ -44,6 +44,9 @@
           <div class="input-group mb-1">
             <button id="btnLogin" type="submit" class="btn btn-lg btn-primary w-100 fs-6">Iniciar Sesión</button>
           </div>
+          <div class="input-group mb-1">
+            <a href="{% url 'index' %}" class="btn btn-md btn-secondary text-white w-100 fs-6">Volver al Home</a>
+          </div>
           <div class="row-6 mt-2" class="register-text">
             <small>¿No tienes Coffy Cuenta? </small> <a href="{% url 'register' %}">Registrate para un cafésito</a>
           </div>
@@ -56,5 +59,9 @@
 {% endblock %}
 
 {% block footer %}
+
+{% endblock %}
+
+{% block nav %}
 
 {% endblock %}

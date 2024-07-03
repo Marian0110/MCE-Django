@@ -2,9 +2,12 @@
 {% load static %}
 {% block title %}REGISTRARSE{%endblock %}
 {% block content %}
+{% block nav %}
+
+{% endblock %}
 <!--AREA REGISTRO-->
-<div class="container d-flex justify-content-center align-items-center min-vh-100 mt-3 mb-3">
-  <div id="area-center" class="row border rounder-5 p-3 bg-white shadow box-area">
+<div class="container d-flex justify-content-center align-items-center min-vh-100 mb-3 mt-0">
+  <div class="row border rounder-5 p-3 bg-white shadow box-area">
     <!--left box-->
     <div id="area-img" class="col-md-5 rounder-5 d-flex justify-content-center align-items-center flex-column left-box">
       <div> <!--division de la imagen -->
@@ -17,19 +20,19 @@
     <div class="col-md-6 right-box">
       <div class="row align-items-center">
         <div class="header-text">
-          <h3>HOLA!</p>
-            <p>Registrate para ser parte de nuestra comunidad cafétera ☕😊</p>
+          <h3>HOLA!</h3>
+            <h5>Registrate para ser parte de nuestra comunidad cafétera ☕😊</h5>
         </div>
         <!--INICIO FORM-->
         <form id="form-register" action="" name="registro-data-personal">
           <!--method="post" enctype="multipart/form-data" -->
           <div class="input-group mb-2">
-            <input id="usuarioRegistro" type="text" class="form-control form-control-lg bd-light fs-6"
+            <input id="username" name="username" type="text" class="form-control form-control-lg bd-light fs-6"
               placeholder="Nombre de usuario">
           </div>
           <div id="messageUsuario" class="error"></div>
           <div class="input-group mb-2">
-            <input id="emailRegistro" type="text" class="form-control form-control-lg bd-light fs-6"
+            <input id="email" name="email" type="text" class="form-control form-control-lg bd-light fs-6"
               placeholder="Ingresa tu e-mail">
           </div>
           <div id="messageEmail" class="error"></div>
