@@ -1,8 +1,8 @@
 .error-container {
-    height: 70px; 
+  height: 70px; 
   }
   
-  .error {
-    display: none; 
-    color: red; 
-  }
+.error{
+  display: none; 
+  color: red;
+}

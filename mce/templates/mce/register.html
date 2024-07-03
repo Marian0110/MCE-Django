@@ -24,8 +24,9 @@
             <h5>Registrate para ser parte de nuestra comunidad cafétera ☕😊</h5>
         </div>
         <!--INICIO FORM-->
-        <form id="form-register" action="" name="registro-data-personal">
-          <!--method="post" enctype="multipart/form-data" -->
+        <form id="form-register" action="" name="registro-data-personal" method="POST">
+          <!-- enctype="multipart/form-data" -->
+          {% csrf_token %}
           <div class="input-group mb-2">
             <input id="username" name="username" type="text" class="form-control form-control-lg bd-light fs-6"
               placeholder="Nombre de usuario">
