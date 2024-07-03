@@ -21,7 +21,7 @@
             <p>Registrate para ser parte de nuestra comunidad cafétera ☕😊</p>
         </div>
         <!--INICIO FORM-->
-        <form id="form-register" action="#" name="registro-data-personal">
+        <form id="form-register" action="" name="registro-data-personal">
           <!--method="post" enctype="multipart/form-data" -->
           <div class="input-group mb-2">
             <input id="usuarioRegistro" type="text" class="form-control form-control-lg bd-light fs-6"
@@ -44,12 +44,12 @@
           </div>
           <div id="messagePhone" class="error"></div>
           <div class="input-group mb-2">
-            <input id="pass" type="password" class="form-control form-control-lg bd-light fs-6"
+            <input id="pass" name="pass" type="password" class="form-control form-control-lg bd-light fs-6"
               placeholder="Crea una contraseña">
           </div>
           <div id="messagePassword" class="error"></div>
           <div class="input-group mb-2">
-            <input id="verifyPass" type="password" class="form-control form-control-lg bd-light fs-6"
+            <input id="verifyPass" name="verifyPass" type="password" class="form-control form-control-lg bd-light fs-6"
               placeholder="Confirmar contraseña">
           </div>
           <div id="messageConfirm" class="error"></div>
@@ -65,7 +65,7 @@
             <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Registrarse</button>
           </div>
           <div id="backLogin" class="text-center">
-            <a href="login" style="text-decoration: none;">Volver a Iniciar Sesión</a>
+            <a href="{% url 'loginC' %}" style="text-decoration: none;">Volver a Iniciar Sesión</a>
           </div>
         </form> <!--END FORM-->
       </div>

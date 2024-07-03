@@ -46,24 +46,24 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" aria-current="page" href="index">HOME</a>
+              <a class="nav-link mx-lg-2" aria-current="page" href="{% url 'index' %}">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="aboutUs">Nosotros</a>
+              <a class="nav-link mx-lg-2" href="{% url 'aboutUs' %}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 product" href="coffeeProducts">Productos</a>
+              <a class="nav-link mx-lg-2 product" href="{% url 'coffeeProducts' %}">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="accessories">Accesorios</a>
+              <a class="nav-link mx-lg-2" href="{% url 'accessories' %}">Accesorios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="history">Historia</a>
+              <a class="nav-link mx-lg-2" href="{% url 'history' %}">Historia</a>
             </li>
           </ul>
         </div>
       </div>
-      <a href="login" class="login-button">Iniciar Sesion</a>
+      <a href="{% url 'loginC' %}" class="login-button">Iniciar Sesion</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -94,10 +94,10 @@
           </h5>
           <hr class="mb-1" />
           <p>
-            <a href="coffeeProducts" id="MCEfooter">Café</a>
+            <a href="{% url 'coffeeProducts' %}" id="MCEfooter">Café</a>
           </p>
           <p>
-            <a href="accessories" id="MCEfooter">Accesorios</a>
+            <a href="{% url 'accessories' %}" id="MCEfooter">Accesorios</a>
           </p>
           <p id="phraseMCE">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
