@@ -41,10 +41,37 @@ def history(request):
     context={'historias': historias, 'id_map': id_map}
     return render(request, 'mce/history.html', context)
 
-def login(request):
+def loginC(request):
     context={}
-    return render(request, 'mce/login.html', context)
+    return render(request, 'mce/loginC.html', context)
+
+########### registro/login ############################
 
 def register(request):
-    context={}
-    return render(request, 'mce/register.html', context)
+    if request.method == "POST":
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('pass')
+        password2 = request.POST.get('verifyPass')
+
+        mensaje = None
+
+        if password1 != password2:
+            mensaje = "Las contraseñas no coinciden."
+        elif User.objects.filter(username=username).exists():
+            mensaje = "El nombre de usuario ya está en uso."
+        elif User.objects.filter(email=email).exists():
+            mensaje = "El correo ya se encuentra registrado."
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password1)
+            user.save()
+            user = authenticate(username=username, password=password1)
+            if user is not None:
+                login(request, user)
+                mensaje = f"¡Cuenta creada para {username}!"
+                return redirect("loginC") 
+
+        context = {'mensaje': mensaje}
+        return render(request, 'mce/register.html', context)
+    
+    return render(request, 'mce/register.html')
