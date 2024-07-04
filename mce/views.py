@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Cliente, Producto, Accesorio, Historia, Nosotros
+from .models import Cliente, Producto, Accesorio, Historia, Nosotros, Pais
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
-from administrativo.forms import paisForm 
 # Create your views here.
 
 def index(request):
@@ -67,13 +66,15 @@ def logoutC(request):
 ########### registro/login ############################
 
 def register(request):
+    paises = Pais.objects.all()
+
     if request.method == "POST":
         username = request.POST.get('username')
         email = request.POST.get('email')
         password1 = request.POST.get('pass')
         password2 = request.POST.get('verifyPass')
         cel = request.POST.get('phone')
-        codigo = request.POST.get('codigo') 
+        codigo = request.POST.get('codigo')
 
         mensaje = None
 
@@ -86,16 +87,18 @@ def register(request):
         else:
             user = User.objects.create_user(username=username, email=email, password=password1)
             user.save()
-            cliente = Cliente(username=username, email=email, phoneNumber=cel, password=password2, active=True, codigo=codigo)
+            # Asigna el código del país al cliente
+            cliente = Cliente(username=username, email=email, phoneNumber=cel, password=password2, active=True)
             cliente.save()
 
             user = authenticate(username=username, password=password1)
             if user is not None:
                 login(request, user)
                 mensaje = f"¡Cuenta creada para {username}!"
-                return redirect("loginC")  
-        context = {'form': paisForm}
+                return redirect("loginC")
+        
+        context = {'mensaje': mensaje, 'paises': paises}
         return render(request, 'mce/register.html', context)
-    
-    contxto = {'form': paisForm}
-    return render(request, 'mce/register.html', contxto)
+
+    context = {'paises': paises}
+    return render(request, 'mce/register.html', context)
