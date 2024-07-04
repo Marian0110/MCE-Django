@@ -287,7 +287,7 @@ def agregarCliente(request):
 def eliminarCliente(request, id):
     cliente= Cliente.objects.get(id=id)
     cliente.delete()
-    return redirect('../crud')
+    return redirect('../crudClientes')
     
 @login_required
 def edicionCliente(request, id):
