@@ -1,6 +1,5 @@
 $(document).ready(function () {
   $('#form-login').on("submit", function (e) {
-    e.preventDefault();
     let isValid = true;
     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[./@-]).{8,}$/;
     let username = $('#username').val();
