@@ -6,7 +6,8 @@ class Cliente(models.Model):
     username    = models.CharField(max_length=20, unique=True, default='default_username', null=False, blank=False)
     email       = models.EmailField(unique=True, max_length=100, blank=False, null=False)
     password    = models.CharField(max_length=50)
-    phoneNumber = models.CharField(max_length=9, blank=True, null=True)
+    phoneNumber = models.CharField(max_length=15, blank=True, null=True)
+    codigo      = models.CharField(max_length=5, default=56) 
     active      = models.BooleanField()
 
     def __str__(self): #tip:metodo que contiene las clases para mostrar los datos de forma mas determinada cuando se haga la impresion de un objeto en el panel de admin
