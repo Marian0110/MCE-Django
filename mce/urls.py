@@ -10,4 +10,5 @@ urlpatterns=[
     path('history', views.history, name='history'),
     path('loginC', views.loginC, name='loginC'),
     path('register', views.register, name='register'),
+    path('logoutC', views.logoutC, name='logoutC'),
 ]

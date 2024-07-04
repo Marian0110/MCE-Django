@@ -21,7 +21,7 @@
             <p>Bienvenido a la página de nuevo.</p>
         </div>
         <!--INICIO FORM-->
-        <form id="form-login" action="#" name="loguear" method="POST"> <!-- enctype="multipart/form-data" -->
+        <form id="form-login" action="{% url 'loginC' %}" name="loguear" method="POST"> <!-- enctype="multipart/form-data" -->
           {% csrf_token %}
           <div class="input-group mb-3">
             <input id="username" name="username" type="text" class="form-control form-control-lg bd-light fs-6"
