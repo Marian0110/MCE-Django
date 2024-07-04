@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizacion de paises</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        {% if pais %}
+            <h2>Formulario actualización de datos</h2><br>
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                {{ form.as_table}}
+        
+                <input type="submit" value="Actualizar" name="Actualizar">
+            </form><br>
+        {% endif %}
+
+        <div id="mensaje">
+            {% if mensaje %}
+            {{ mensaje }}
+            {% endif %}
+        </div>
+
+        <a href="{% url 'crud_paises' %}">Volver</a><br>
+    </div>
+</body>
+</html>

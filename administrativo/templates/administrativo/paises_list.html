@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar paises</title>
+</head>
+
+<body>
+    <h1>Editar paises</h1><br>
+
+    <button type="button">
+        <a href="{% url 'paisesAdd' %}">Agregar</a>
+    </button>
+    
+    <hr class="my-4">
+
+    <div id="mensaje">
+        {% if mensaje %}
+        {{ mensaje }}
+        {% endif %}
+    </div>
+
+    <table>
+        {% if paises %}
+        <tr>
+            <th>Nombre: </th>
+            <th>Codigo: </th>
+            <th>Eliminar</th>
+            <th>Editar</th>
+        </tr>
+        {% for p in paises %}
+        <tr>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.codigo }}</td>
+            <td><a href="{% url 'paises_del' pk=p.pk %}">Eliminar</a></td>
+            <td><a href="{% url 'paises_edit' pk=p.pk %}">Editar</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+   
+    <hr class="my-4">
+   
+    <button type="button">
+        <a href="{% url 'crud_paises' %}">Volver</a>
+    </button>
+   
+   
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('#mensaje').delay(3000).fadeOut('slow');
+        });
+    </script>
+
+</body>
+
+</html>
