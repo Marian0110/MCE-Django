@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from mce.models import Cliente, Producto, Accesorio, Historia, Nosotros
+from mce.models import Cliente, Producto, Accesorio, Historia, Nosotros, Pais
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
-
+from .forms import paisForm
 ########  LOGIN/REGISTRO ADMIN ##########
 @login_required
 def registro(request):
@@ -77,7 +77,68 @@ def crudNosotros(request):
     context={'nosotros' : nosotros}
     return render(request, 'administrativo/crudNosotros.html', context)
 #####################################################
+@login_required
+def crud_paises(request):
+    paises= Pais.objects.all()
+    context={"paises":paises}
+    
+    return render(request, 'administrativo/paises_list.html', context)
 
+@login_required
+def paisesAdd(request):
+    context={}
+    if request.method == "POST":
+        form = paisForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form=paisForm()
+            context={'mensaje': "OK, Datos grabados...","form":form}
+            return render(request, "administrativo/paises_add.html",context)
+    
+    else:
+        form = paisForm()
+        context={'form':form}
+        return render(request,'administrativo/paises_add.html',context)
+
+@login_required    
+def paises_del(request, pk):
+    context={}
+    try:
+        pais= Pais.objects.get(pk=pk)
+        pais.delete()
+        mensaje= "Datos eliminados"
+        paises= Pais.objects.all()
+        context={'paises':paises, 'mensaje': mensaje}
+        return render(request, 'administrativo/paises_list.html', context)
+    except:
+        mensaje= "Pais no encontrado."
+        paises= Pais.objects.all()
+        context={'paises':paises, 'mensaje': mensaje}
+        return render(request, 'administrativo/paises_list.html', context)
+
+@login_required    
+def paises_edit(request,pk):
+    context={}
+    try:
+        pais= Pais.objects.get(pk=pk)
+        if pais:
+            if request.method == "POST":
+                form=paisForm(request.POST,instance=pais)
+                form.save()
+                mensaje="Bien, datos actualizados..."
+                context={'pais':pais, 'mensaje': mensaje}
+                return render(request, 'administrativo/paises_edit.html', context)
+            else:
+                form = paisForm(instance=pais)
+                mensaje = ""
+                context={'pais':pais, 'form':form,'mensaje': mensaje}
+                return render(request, 'administrativo/paises_edit.html', context)
+    except:
+        paises= Pais.objects.all()
+        mensaje = "Error, id no existe."
+        context={'paises':paises, 'mensaje': mensaje}
+        return render(request, 'administrativo/paises_list.html', context)
+#####################################################################################
 
 @login_required
 def agregarProducto(request):

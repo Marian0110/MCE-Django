@@ -11,6 +11,11 @@ urlpatterns=[
 
     path('registro', views.registro, name='registro'),
 
+    path('crud_paises', views.crud_paises, name='crud_paises'),
+    path('paisesAdd', views.paisesAdd, name='paisesAdd'),
+    path('paises_del/<int:pk>', views.paises_del, name='paises_del'),
+    path('paises_edit/<int:pk>', views.paises_edit, name='paises_edit'),
+
     path('agregarSobreN', views.agregarSobreN, name='agregarSobreN'),
     path('eliminarN/<id>', views.eliminarN, name='eliminarN'),
     path('editarN', views.editarN, name='editarN'),

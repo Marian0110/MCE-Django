@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
-
+from administrativo.forms import paisForm 
 # Create your views here.
 
 def index(request):
@@ -73,6 +73,7 @@ def register(request):
         password1 = request.POST.get('pass')
         password2 = request.POST.get('verifyPass')
         cel = request.POST.get('phone')
+        codigo = request.POST.get('codigo') 
 
         mensaje = None
 
@@ -85,7 +86,7 @@ def register(request):
         else:
             user = User.objects.create_user(username=username, email=email, password=password1)
             user.save()
-            cliente = Cliente(username=username, email=email, phoneNumber=cel, password=password2, active=True)
+            cliente = Cliente(username=username, email=email, phoneNumber=cel, password=password2, active=True, codigo=codigo)
             cliente.save()
 
             user = authenticate(username=username, password=password1)
@@ -93,7 +94,8 @@ def register(request):
                 login(request, user)
                 mensaje = f"¡Cuenta creada para {username}!"
                 return redirect("loginC")  
-        context = {'mensaje': mensaje}
+        context = {'form': paisForm}
         return render(request, 'mce/register.html', context)
     
-    return render(request, 'mce/register.html')
+    contxto = {'form': paisForm}
+    return render(request, 'mce/register.html', contxto)
