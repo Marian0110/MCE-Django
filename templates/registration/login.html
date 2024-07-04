@@ -18,7 +18,7 @@
                     <div class="card-header text-center">
                         <h2>INICIO DE SESIÓN</h2>
                     </div>
-                    <div class="card-subtitle text-muted">
+                    <div class="card-subtitle text-muted text-center">
                         <p>Ingresa tu correo y contraseña para acceder a tu cuenta administrativa.</p>
                     </div>
                     <div class="card-body">
@@ -30,7 +30,8 @@
                                     <div class="icon">
                                         <i class="fas fa-user"></i>
                                     </div>
-                                    <input type="text" id="username" name="username" class="form-control" required>
+                                    <input type="text" id="username" name="username" class="form-control">
+                                    <div class="error text-danger"></div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -39,7 +40,8 @@
                                     <div class="icon">
                                         <i class="fas fa-key"></i>
                                     </div>
-                                    <input type="password" id="password" name="password" class="form-control" required>
+                                    <input type="password" id="password" name="password" class="form-control">
+                                    <div class="error text-danger"></div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -66,24 +68,21 @@
             $("#loginForm").on("submit", function(event) {
                 var isValid = true;
 
-                // Limpiar errores previos
-                $(".error").remove();
+                $(".error").text("");
 
-                // Validar username
-                var username = $("#username").val();
-                if (username.trim() === "") {
+                var username = $("#username").val().trim();
+                if (username === "") {
                     isValid = false;
-                    $("#username").after('<span class="error text-danger">Ingrese un usuario valido.</span>');
+                    $("#username").next(".error").text("Ingrese un nombre de usuario");
                 }
 
-                // Validar password
-                var password = $("#password").val();
-                if (password.trim() === "") {
+                var password = $("#password").val().trim();
+                if (password === "") {
                     isValid = false;
-                    $("#password").after('<span class="error text-danger">Ingrese una contraseña valida.</span>');
+                    $("#password").next(".error").text("Ingrese una contraseña");
                 } else if (password.length < 4) {
                     isValid = false;
-                    $("#password").after('<span class="error text-danger">La contraseña debe tener un minimo de 4 caracteres.</span>');
+                    $("#password").next(".error").text("La contraseña debe tener un minimo de 4 caracteres");
                 }
 
                 if (!isValid) {
