@@ -56,8 +56,8 @@ def loginC(request):
             return redirect('index')
         else:
             return render(request, 'mce/loginC.html')
-
-    return render(request, 'mce/loginC.html')
+    else:
+        return render(request, 'mce/loginC.html')
 
 def logoutC(request):
     logout(request)
@@ -74,7 +74,7 @@ def register(request):
         password1 = request.POST.get('pass')
         password2 = request.POST.get('verifyPass')
         cel = request.POST.get('phone')
-        codigo = request.POST.get('codigo')
+        codigo = request.POST.get('codigoP')
 
         mensaje = None
 
@@ -87,8 +87,10 @@ def register(request):
         else:
             user = User.objects.create_user(username=username, email=email, password=password1)
             user.save()
-            # Asigna el código del país al cliente
-            cliente = Cliente(username=username, email=email, phoneNumber=cel, password=password2, active=True)
+            
+            telefono = f"{codigo} {cel}" 
+
+            cliente = Cliente(username=username, email=email, phoneNumber=telefono, password=password2, active=True)
             cliente.save()
 
             user = authenticate(username=username, password=password1)
@@ -99,6 +101,6 @@ def register(request):
         
         context = {'mensaje': mensaje, 'paises': paises}
         return render(request, 'mce/register.html', context)
-
-    context = {'paises': paises}
-    return render(request, 'mce/register.html', context)
+    else:
+        context = {'paises': paises}
+        return render(request, 'mce/register.html', context)
