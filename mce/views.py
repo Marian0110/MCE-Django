@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Cliente, Producto, Accesorio, Historia, Nosotros, Pais
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -44,24 +44,6 @@ def history(request):
 # def loginC(request):
 #     context={}
 #     return render(request, 'mce/loginC.html', context)
-
-def loginC(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('index')
-        else:
-            return render(request, 'mce/loginC.html')
-    else:
-        return render(request, 'mce/loginC.html')
-
-def logoutC(request):
-    logout(request)
-    return redirect('index') 
 
 ########### registro/login ############################
 
@@ -104,3 +86,23 @@ def register(request):
     else:
         context = {'paises': paises}
         return render(request, 'mce/register.html', context)
+
+def loginC(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Credenciales correctas')
+            return redirect('index')
+        else:
+            messages.error(request, "Nombre de usuario o contraseña incorrectos")
+            return render(request, 'mce/loginC.html')
+    else:
+        return render(request, 'mce/loginC.html')
+
+def logoutC(request):
+    logout(request)
+    return redirect('index') 

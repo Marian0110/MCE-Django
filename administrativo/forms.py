@@ -5,4 +5,4 @@ class paisForm(forms.ModelForm):
     class Meta:
         model = Pais
         fields = ['nombre', 'codigo']
-        labels = {'nombre':'Pais: ' , 'codigo' : 'Codigo: '}
+        labels = {'nombre':'Pais' , 'codigo' : 'Codigo'}

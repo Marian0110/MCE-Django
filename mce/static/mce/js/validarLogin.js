@@ -28,19 +28,6 @@ $(document).ready(function () {
 
     if (!isValid) {
       e.preventDefault();
-    } else {
-      $('#btnLogin').prop('disabled', true);
-      Swal.fire({
-        title: '¡Bienvenido!',
-        text: 'Credenciales correctas',
-        icon: 'success',
-        confirmButtonText: 'CONTINUAR',
-        timer: 6000
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = '../mce/index';
-        }
-      });
     }
   });
 
