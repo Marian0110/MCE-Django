@@ -1,63 +1,54 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'administrativo/baseCrud.html' %}
+{% block title %} Mantenedor de países {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mantenedor paises</title>
-</head>
-
-<body>
-    <h1>Editar paises</h1><br>
-
-    <button type="button">
-        <a href="{% url 'paisesAdd' %}">Agregar</a>
-    </button>
-    
-    <hr class="my-4">
-
-    <div id="mensaje">
-        {% if mensaje %}
-        {{ mensaje }}
-        {% endif %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="text-center">Gestión de países</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive py-2">
+                    <table class="table table-striped">
+                        {% if paises %}
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Código</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in paises %}
+                            <tr>
+                                <td>{{ p.nombre }}</td>
+                                <td>{{ p.codigo }}</td>
+                                <td>
+                                    <div style="display: flex; gap: 10px;">
+                                        <a href="{% url 'paises_edit' pk=p.pk %}" class="btn btn-info">Editar</a>
+                                        <a href="{% url 'paises_del' pk=p.pk %}" class="btn btn-danger">Eliminar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+                <button type="button" class="btn btn-secondary">
+                    <a href="{% url 'crud' %}" style="text-decoration: none;" class="text-white">Volver</a>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <a href="{% url 'paisesAdd' %}" style="text-decoration: none;" class="text-white">Agregar</a>
+                </button>
+            </div>
+            <div id="mensaje">
+                {% if mensaje %}
+                <div class="alert alert-success" role="alert">
+                    {{ mensaje }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-
-    <table>
-        {% if paises %}
-        <tr>
-            <th>Nombre: </th>
-            <th>Codigo: </th>
-            <th>Eliminar</th>
-            <th>Editar</th>
-        </tr>
-        {% for p in paises %}
-        <tr>
-            <td>{{ p.nombre }}</td>
-            <td>{{ p.codigo }}</td>
-            <td><a href="{% url 'paises_del' pk=p.pk %}">Eliminar</a></td>
-            <td><a href="{% url 'paises_edit' pk=p.pk %}">Editar</a></td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-    </table>
-   
-    <hr class="my-4">
-   
-    <button type="button">
-        <a href="{% url 'crud' %}">Volver</a>
-    </button>
-   
-   
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $('#mensaje').delay(3000).fadeOut('slow');
-        });
-    </script>
-
-</body>
-
-</html>
+</div>
+{% endblock %}

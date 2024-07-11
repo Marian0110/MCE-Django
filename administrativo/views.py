@@ -106,7 +106,7 @@ def paises_del(request, pk):
     try:
         pais= Pais.objects.get(pk=pk)
         pais.delete()
-        mensaje= "Datos eliminados"
+        mensaje= "Datos eliminados con exito"
         paises= Pais.objects.all()
         context={'paises':paises, 'mensaje': mensaje}
         return render(request, 'administrativo/paises_list.html', context)
@@ -125,8 +125,9 @@ def paises_edit(request,pk):
             if request.method == "POST":
                 form=paisForm(request.POST,instance=pais)
                 form.save()
+                form=paisForm()
                 mensaje="Bien, datos actualizados..."
-                context={'pais':pais, 'mensaje': mensaje}
+                context={'pais':pais, 'mensaje': mensaje, 'form' : form}
                 return render(request, 'administrativo/paises_edit.html', context)
             else:
                 form = paisForm(instance=pais)
