@@ -52,18 +52,32 @@
             <small>¿No tienes Coffy Cuenta? </small> <a href="{% url 'register' %}">Registrate para un cafésito</a>
           </div>
         </form>
-        {% if messages %}
-        <div>
-          {% for message in messages %}
-            {{message}}
-          {% endfor %}
-        </div>
+        {% if request.session.mensaje %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            Swal.fire({
+              text: "{{ request.session.mensaje }}",
+              icon: "{{ request.session.tipo_mensaje }}",
+              timer: 6000
+            });
+
+            fetch("{% url 'limpiarMensaje' %}", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+              },
+            });
+          });
+        </script>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
 <!--END FORM-->
+
 {% endblock %}
 
 {% block footer %}

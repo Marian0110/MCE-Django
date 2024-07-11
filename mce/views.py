@@ -96,13 +96,28 @@ def loginC(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Credenciales correctas')
+            request.session['mensaje'] = '¡Inicio de sesión exitoso!'
+            request.session['tipo_mensaje'] = 'success'
             return redirect('index')
         else:
-            messages.error(request, "Nombre de usuario o contraseña incorrectos")
+            messages.error(request, 'Nombre de usuario o contraseña incorrectos')
+            request.session['mensaje'] = 'Nombre de usuario o contraseña incorrectos'
+            request.session['tipo_mensaje'] = 'error'
             return render(request, 'mce/loginC.html')
     else:
         return render(request, 'mce/loginC.html')
 
+
+
 def logoutC(request):
     logout(request)
     return redirect('index') 
+
+from django.http import JsonResponse
+
+def limpiarMensaje(request):
+    if 'mensaje' in request.session:
+        del request.session['mensaje']
+    if 'tipo_mensaje' in request.session:
+        del request.session['tipo_mensaje']
+    return JsonResponse({'status': 'ok'})

@@ -27,7 +27,7 @@ $(document).ready(function () {
     }
 
     if (!isValid) {
-      e.preventDefault();
+      e.preventDefault();  
     }
   });
 
